@@ -1,0 +1,33 @@
+name: test-caching-npm
+on: 
+  workflow_dispatch: 
+    inputs: 
+      node-version: 
+        type: choice
+        description: ENter the node veraion
+        default: 18.x
+        options: 
+          - 14.x
+          - 18.x
+          - 20.x
+jobs: 
+  build: 
+    defaults: 
+      run: 
+        working-directory: 13-caching/react-app
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: setup-node
+        uses: actions/setup-node@v3
+        with:  
+          node-version: '${{ inputs.node-version }}'
+      - name: install dependencies
+        run: npm ci
+      - name: Testing
+        run: npm run test
+      - name: initiate build
+        run: npm run build
+
+    
