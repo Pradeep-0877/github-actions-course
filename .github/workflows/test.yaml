@@ -2,6 +2,10 @@ name: test-caching-npm
 on: 
   workflow_dispatch: 
     inputs: 
+      cache: 
+        type: boolean
+        description: Do you want cache
+        default: true
       node-version: 
         type: choice
         description: ENter the node veraion
@@ -39,3 +43,4 @@ jobs:
 
 
     
+
