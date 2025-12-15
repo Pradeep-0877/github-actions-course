@@ -8,7 +8,7 @@ on:
         default: true
       node-version: 
         type: choice
-        description: ENter the node veraion
+        description: Enter the node veraion
         default: 18.x
         options: 
           - 14.x
@@ -31,7 +31,7 @@ jobs:
           node-version: '${{ inputs.node-version }}'
       - name: print cache key
         id: cache-key
-        run: echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/packega-lock.json') }}" >> "$GITHUB_OUTPUT
+        run: echo "CACHE_KEY=deps-node-modules-${{ hashFiles('package-lock.json') }}" >> "$GITHUB_OUTPUT"
       - name: caching the dependencies
         uses: actions/cache@v3
         if: inputs.cache
@@ -55,5 +55,6 @@ jobs:
 
 
     
+
 
 
